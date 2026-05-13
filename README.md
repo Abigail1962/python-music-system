@@ -34,6 +34,5 @@ A GUI-based music system built with Python's `turtle` and `wave` modules. This p
 - `songs/`: Directory containing music files (`.txt`).
 - `soundfont/`: Directory containing sampled instrument soundbanks (`.zip`).
 
-## Credits
 
-This project was developed as part of the COMP1021 course.
+

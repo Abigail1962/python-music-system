@@ -1,5 +1,6 @@
-# COMP1021 Music System
-# Final Polished Version
+# Python Music System
+# A versatile music synthesizer and player
+
 
 import turtle # Import the turtle module for drawing
 import music  # Import the music module for playing music
