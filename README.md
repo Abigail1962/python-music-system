@@ -3,7 +3,7 @@
 A professional-grade interactive music synthesizer and composition engine. This project demonstrates the full lifecycle of software evolution—from a core logic implementation in Python to a modern, high-performance Web application.
 
 ## 📺 Project Demo
-![Music System Pro Demo](file:///Users/abigailjoek/.gemini/antigravity/brain/de2c9d6f-2bf3-4737-874c-a8b463c85c6e/music_system_demo_v2_1778695537352.webp)
+![Music System Pro Demo](./assets/demo.webp)
 
 ## 🚀 Key Technical Highlights
 
