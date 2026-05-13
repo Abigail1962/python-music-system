@@ -250,3 +250,20 @@ def stop(delete_sound=False):
         os.remove("temp_music.wav")
     except:
         pass
+
+
+# Save the current temporary wav file to a new location
+def save_to_file(destination):
+    import shutil
+    tempname = "temp_music.wav"
+    if os.path.exists(tempname):
+        try:
+            # If destination doesn't have .wav, add it
+            if not destination.lower().endswith(".wav"):
+                destination += ".wav"
+            shutil.copy(tempname, destination)
+            return True
+        except Exception as e:
+            print(f"Error saving file: {e}")
+            return False
+    return False
