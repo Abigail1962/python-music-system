@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# MacOS
+.DS_Store
+
+# Project specific
+temp_music.wav
+scratch/
