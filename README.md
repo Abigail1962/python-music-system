@@ -1,40 +1,165 @@
-# Music System Pro: Python to Web Transformation
+# Music System Pro
 
-A professional-grade interactive music synthesizer and composition engine. This project demonstrates the full lifecycle of software evolution—from a core logic implementation in Python to a modern, high-performance Web application.
+Music System Pro is a web-based music player and editor built from an earlier Python music system.
 
-## 📺 Project Demo
-![Music System Pro Demo](./assets/demo.webp)
+The project supports loading simple text-based music files, playing note sequences in the browser, changing instruments, adjusting speed and pitch, and exporting songs as WAV files.
 
-## 🚀 Key Technical Highlights
-
-### 1. Cross-Platform Engine Migration
-Successfully migrated a procedural Python music synthesis logic to a modern **Next.js & TypeScript** environment. This involved decoupling the core audio data structures from the original GUI (Turtle) and re-implementing them using the **Web Audio API**.
-
-### 2. Low-Level Audio Engineering (WAV Export)
-One of the project's most sophisticated features is the manual implementation of a **WAV file encoder**.
-*   **The Challenge**: Browsers provide raw PCM data as 32-bit floats, which are not directly playable as files.
-*   **The Solution**: Developed a custom `bufferToWav` utility that manually constructs a **RIFF Waveform Audio File Format** header.
-*   **Engineering Detail**:
-    *   Implemented binary data manipulation using `ArrayBuffer` and `DataView`.
-    *   Handled sample rate conversion and 16-bit signed integer quantization.
-    *   Applied volume limiting and clipping prevention (`Math.max(-1, Math.min(1, ...))`) to ensure professional audio quality.
-
-### 3. Fast Non-Real-Time Rendering
-Implemented audio exportation using **`OfflineAudioContext`**. Unlike standard recording, this allows the system to render complex compositions into a buffer at hardware-maximum speeds without being limited by the actual duration of the song, significantly improving user experience.
-
-### 4. Custom DSL Parser
-Built a robust parser in TypeScript to bridge the gap between the original Python `.txt` score format (tab-separated) and the Web's JSON-based note structure, ensuring full backward compatibility with legacy assets.
-
-## 🛠 Tech Stack
-*   **Frontend**: Next.js 15, TypeScript, Tailwind CSS
-*   **Audio Engine**: Web Audio API (AnalyserNode, OfflineAudioContext)
-*   **Legacy Core**: Python 3.x
-*   **Deployment**: Vercel ready
-
-## 📈 Job-Ready Portfolio Points
-*   **Data Structures**: Efficient handling of large arrays of timed note events.
-*   **Binary Processing**: Direct manipulation of binary file headers and buffers.
-*   **Modern Web**: Deep understanding of browser internals and performance-focused React hooks.
+This project started as a small Python-based music player and was later rewritten as a web application to explore browser audio programming with TypeScript and React.
 
 ---
-© 2026 Advanced Audio Synthesis Lab
+
+## Demo
+
+![Music System Pro Demo](./assets/demo.webp)
+
+---
+
+## Features
+
+- Play built-in songs from a small music library
+- Filter songs by category
+- Import custom `.txt` music files
+- Parse text-based note data into timed note sequences
+- Change instruments using sampled soundfont files
+- Adjust playback speed
+- Transpose pitch up or down
+- Randomize song pitches
+- Export the current song as a `.wav` file
+- Stop and restart playback in the browser
+
+---
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+- Web Audio API
+- Python
+
+---
+
+## Project Structure
+
+```text
+python-music-system/
+├── music_system.py        # Original Python turtle-based music interface
+├── music.py               # Python audio helper module
+├── songs/                 # Original text-based song files
+├── soundfont/             # Instrument sound samples
+├── assets/                # Demo image
+└── web/                   # Next.js web version
+    ├── src/app/page.tsx
+    ├── src/lib/audioEngine.ts
+    ├── src/lib/songParser.ts
+    ├── src/lib/aiComposer.ts
+    └── src/data/songs.json
+```
+
+---
+
+## How It Works
+
+The original Python version stores songs as text files. Each line represents one note:
+
+```text
+start_time pitch duration
+```
+
+Example:
+
+```text
+0.0 60 0.5
+0.5 64 0.5
+1.0 67 1.0
+```
+
+The web version reads this format, parses each line into note objects, and plays them using the Web Audio API.
+
+Each parsed note has the following structure:
+
+```ts
+{
+  time: number;
+  pitch: number;
+  duration: number;
+}
+```
+
+The audio engine maps MIDI-style pitch numbers to soundfont `.wav` samples, schedules playback in the browser, and supports exporting the rendered result as a WAV file.
+
+---
+
+## Main Components
+
+### `songParser.ts`
+
+Parses text-based song files into structured note data.
+
+### `audioEngine.ts`
+
+Handles browser audio playback, instrument sample loading, note scheduling, playback control, and WAV export.
+
+### `page.tsx`
+
+Contains the main React UI for song selection, playback controls, instrument selection, file import, transposition, speed adjustment, and export.
+
+### `music_system.py`
+
+The original Python version using `turtle` for the interface and a custom music module for playback.
+
+---
+
+## Getting Started
+
+### Run the web version
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+### Run the Python version
+
+```bash
+python music_system.py
+```
+
+---
+
+## What I Learned
+
+Through this project, I practiced:
+
+- Converting an existing Python project into a web application
+- Using TypeScript to represent music note data clearly
+- Parsing text files and validating numeric input
+- Scheduling audio playback with the Web Audio API
+- Loading and reusing sound samples in the browser
+- Exporting audio by converting rendered buffers into WAV files
+- Building interactive controls with React state
+
+---
+
+## Future Improvements
+
+- Improve mobile layout
+- Add a visual piano roll or waveform display
+- Add better error handling for imported files
+- Support saving edited songs
+- Add more instruments and song categories
+- Improve playback timing and loading performance
+
+---
+
+## Notes
+
+This is a personal learning project. The original version was written in Python, and the newer web version was built to explore TypeScript, React, and browser-based audio playback.
